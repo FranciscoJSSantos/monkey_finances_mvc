@@ -9,7 +9,7 @@ module.exports = {
             '!**/{bin,obj,node_modules}/**',
             '**/*.{cshtml,html}',
             './**/*.razor',
-            "./node_modules/flowbite/**/*.js"
+            './src/**/*.html', './node_modules/flowbite/**/*.js'
         ]
     },
     darkMode: 'class',
@@ -59,7 +59,9 @@ module.exports = {
     corePlugins: {
         preflight: false,
     },
-    //prefix: 'tw-',
-    plugins: [],
+
+    plugins: [
+        require('flowbite/plugin')
+    ],
 }
 
