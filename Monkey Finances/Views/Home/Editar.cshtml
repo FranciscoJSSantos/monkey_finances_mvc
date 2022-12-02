@@ -1,0 +1,40 @@
+@model RegistroModel
+@{
+    ViewData["Title"] = "Editar Registro";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Registro</h1>
+</div>
+
+<form asp-controller="Registro" asp-action="Alterar" method="post">
+
+    <input type="hidden" asp-for="Id"/>
+    <div class="form-group">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do item">
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="valor" class="form-label">Valor</label>
+        <input type="text" asp-for="Valor" class="form-control" placeholder="Digite o valor do item">
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="tipo" class="form-label">Tipo</label>
+        <input type="text" asp-for="Tipo" class="form-control" placeholder="Digite o tipo do item">
+    </div>
+
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-primary w-100">Alterar</button>
+    <br />
+    <br />
+    <a class="btn btn-secondary w-100" asp-controller="Registro" asp-action="Index" role="button">Voltar</a>
+ 
+</form>

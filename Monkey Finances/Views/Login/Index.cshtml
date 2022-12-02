@@ -1,4 +1,6 @@
-﻿<section class="bg-gray-900 dark:bg-gray-900 h-screen">
+﻿@model LoginModel
+
+<section class="bg-gray-900 dark:bg-gray-900 h-screen">
     <div class="flex flex-col items-center justify-center px-6 mx-auto h-screen lg:py-0">
         <a href="#" class="no-underline flex items-center mb-6 text-2xl font-semibold text-white">
             <img class="h-12 mr-1" src="~/images/semFundoMacacoBranco.png" alt="logo">
@@ -9,14 +11,23 @@
                 <h1 class="text-xl text-center font-bold leading-tight tracking-tight  md:text-2xl text-white">
                     Entre com a sua conta
                 </h1>
-                <form class="space-y-4 md:space-y-6 mr-4" action="#">
+
+                @if (TempData["MensagemErro"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <button font-color="red" type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+                        @TempData["MensagemErro"]
+                    </div>
+                }
+
+                <form asp-controller="Login" asp-action="Entrar" method="post" class="space-y-4 md:space-y-6 mr-4">
                     <div>
-                        <label for="email" class="block mb-2 text-sm font-medium text-white">Email</label>
-                        <input type="email" name="email" id="email" class="border-none border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="nome@exemplo.com" required="">
+                        <label for="Email" class="block mb-2 text-sm font-medium text-white">Email</label>
+                        <input type="Email" asp-for="Email" name="Email" id="Email" class="border-none border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="nome@exemplo.com" required="">
                     </div>
                     <div>
-                        <label for="password" class="block mb-2 text-sm font-medium text-white">Senha</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="border-none border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="">
+                        <label for="Senha" class="block mb-2 text-sm font-medium text-white">Senha</label>
+                        <input type="password" asp-for="Senha" name="Senha" id="Senha" placeholder="••••••••" class="border-none border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="">
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex items-start">
@@ -30,7 +41,6 @@
                         <a href="#" class="text-sm font-medium no-underline text-primary-500 hover:text-primary-700">Esqueceu senha?</a>
                     </div>
                     <button type="submit"
-                            onclick="location.href='@Url.Action("Index", "Home")'"
                             class="my-2 ml-2 cursor-pointer border-none w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         Entrar
                     </button>

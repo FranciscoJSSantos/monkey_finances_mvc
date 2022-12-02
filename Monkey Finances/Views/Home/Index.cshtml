@@ -1,4 +1,8 @@
-﻿
+﻿@model List<RegistroModel>
+
+@{
+  ViewData["Title"] = "Listagem de Registros";
+}
 <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
@@ -80,6 +84,9 @@
         </div>
     </div>
 </nav>
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Registro" asp-action="Criar">Adicionar novo Registro</a>
+</div>
 <div class="flex flex-col">
   <div class="overflow-hidden sm:-mx-6 lg:-mx-6">
     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
@@ -91,13 +98,13 @@
                 #
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                Nome do item
+                Nome
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                 Valor
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                Handle
+                Tipo
               </th>
             </tr>
           </thead class="border-b">
@@ -114,30 +121,22 @@
                 mdo
               </td>
             </tr class="bg-white border-b">
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Computador
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                500
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                fat
-              </td>
-            </tr>
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                twitter
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                twitter
-              </td>
-               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                fat
-              </td>
-            </tr>
+              @if(Model != null && Model.Any()){
+                foreach(RegistroModel registro in Model){
+                  <tr class="bg-white border-b">
+                    <th scope="row"@registro.Id></th>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" @registro.Name></td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" @registro.Valor></td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" @registro.Tipo></td>
+                    <td>
+                      <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary" asp-route-id="@registro.Id" asp-controller="Registro" asp-action="Editar">Editar</a>
+                        <a role="button" class="btn btn-danger" asp-route-id="@registro.Id" asp-controller="Registro" asp-action="ApagarConfirmacao">Apagar</a>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              }
           </tbody>
         </table>
       </div>
