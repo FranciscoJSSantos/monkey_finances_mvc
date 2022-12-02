@@ -54,8 +54,12 @@ module.exports = {
                 'Segoe UI Symbol',
                 'Noto Color Emoji'
             ]
+        },
+        minWidth: {
+            '1/2': '50%',
         }
     },
+
     corePlugins: {
         preflight: false,
     },
